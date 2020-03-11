@@ -6,4 +6,4 @@ WORKDIR /app
 RUN apk add --no-cache --virtual .build-deps gcc musl-dev
 RUN pip install -r requirements.txt
 
-CMD ["python", "misfit-bot.py"]
+CMD ["python", "misfitbot.py"]
