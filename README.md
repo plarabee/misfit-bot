@@ -16,6 +16,6 @@ cd misfit-bot
 echo "BOT_CLIENT_KEY=VERY_SECRET_KEY" > .env
 echo "BLIZZARD_CLIENT_ID=VERY_SECRET_ID" >> .env
 echo "BLIZZARD_CLIENT_SECRET=ANOTHER_SECRET" >> .env
-docker build -t misfit-bot:1.0 .
-docker container run --detach --name bot misfit-bot:1.0
+docker build -t misfit-bot:1.1 .
+docker container run --detach --name bot misfit-bot:1.1
 ```
