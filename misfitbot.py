@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 """MisfitBot
 
 This program is a Discord chat bot designed for entertainment
@@ -8,6 +7,7 @@ also consumes several other APIs to provide features with
 regular old requests.
 
 Example usage:
+
     git clone https://github.com/plarabee/misfit-bot.git
     cd misfit-bot
     echo "BOT_CLIENT_KEY=VERY_SECRET_KEY" > .env
@@ -15,6 +15,7 @@ Example usage:
     echo "BLIZZARD_CLIENT_SECRET=ANOTHER_SECRET" >> .env
     docker build -t misfit-bot:1.0 .
     docker container run --detach --name bot misfit-bot:1.0
+    
 """
 import os
 import json
@@ -25,6 +26,9 @@ import requests
 from dotenv import load_dotenv
 from requests.auth import HTTPBasicAuth
 from requests.packages.urllib3.exceptions import InsecureRequestWarning
+
+from card import *
+from deck import *
 
 # Global Variable Definitions
 RAIDBOTS_URL = 'https://www.raidbots.com/simbot'
@@ -267,6 +271,13 @@ def main():
             await message.channel.send(
                 guide('arms-warrior') + guide('fury-warrior') +
                 guide('protection-warrior'))
+        
+        if message.content.startswith('!draw'):
+            deck = Deck()
+            deck.shuffle()
+            card = deck.draw()
+
+            await message.channel.send(f'{message.author} drew a {card.rank} of {card.suit}')
 
         if message.content.startswith('!hearthstone'):  # !hearthstone
 
@@ -313,6 +324,7 @@ def main():
                         bot_message += '######################################################\n'
 
                 await message.channel.send(bot_message)
+
 
     client.run(bot_client_key)
 
