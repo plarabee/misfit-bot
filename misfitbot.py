@@ -138,6 +138,17 @@ def get_hs_cards(token, search_term):
 
     return json.loads(response.text)
 
+def random_card():
+    """
+    Creates a new deck object, shuffles it, and prints
+    the rank/suit of the card. Used like roll for random
+    contests
+  """
+    deck = Deck()
+    deck.shuffle()
+    card = deck.draw()
+    return card.rank, card.suit
+
 
 def main():
     """
@@ -273,11 +284,8 @@ def main():
                 guide('protection-warrior'))
         
         if message.content.startswith('!draw'):
-            deck = Deck()
-            deck.shuffle()
-            card = deck.draw()
-
-            await message.channel.send(f'{message.author} drew a {card.rank} of {card.suit}')
+            rank, suit = random_card()
+            await message.channel.send(f'{message.author} drew a {rank} of {suit}')
 
         if message.content.startswith('!hearthstone'):  # !hearthstone
 
