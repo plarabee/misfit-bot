@@ -285,7 +285,7 @@ def main():
         
         if message.content.startswith('!draw'):
             rank, suit = random_card()
-            await message.channel.send(f'{message.author} drew a {rank} of {suit}')
+            await message.channel.send(f'{message.author.name} drew a {rank} of {suit}')
 
         if message.content.startswith('!hearthstone'):  # !hearthstone
 
