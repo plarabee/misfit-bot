@@ -149,6 +149,18 @@ def random_card():
     card = deck.draw()
     return card.rank, card.suit
 
+def poker_hand():
+    """
+    Creates a new deck object, shuffles it, and returns
+    an array of five card objects.
+  """
+    hand = []
+    deck = Deck()
+    deck.shuffle()
+    for i in range(0, 5):
+        hand.append(deck.draw())
+    return hand 
+
 
 def main():
     """
@@ -286,6 +298,14 @@ def main():
         if message.content.startswith('!draw'):
             rank, suit = random_card()
             await message.channel.send(f'{message.author.name} drew a {rank} of {suit}')
+        
+        if message.content.startswith('!poker'):
+            hand = poker_hand()
+            resp = f'{message.author.name} draws a poker hand:\n'
+            for card in hand:
+                resp += f'{card.rank} of {card.suit}\n'
+            await message.channel.send(resp)
+
 
         if message.content.startswith('!hearthstone'):  # !hearthstone
 
