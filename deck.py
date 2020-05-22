@@ -15,8 +15,7 @@ class Deck:
                          'Five', 'Six', 'Seven', 'Eight',
                          'Nine', 'Ten', 'Jack', 'Queen', 'King']:
                 self.cards.append(Card(suit, rank, value))
-                if value < 10:
-                    value += 1
+                value += 1
     
     def shuffle(self):
         random.shuffle(self.cards)
