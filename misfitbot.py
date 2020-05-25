@@ -311,7 +311,7 @@ def main():
                 resp += f'{card.rank} of {card.suit}\n'
 
             if is_high_card:
-                resp += f'High Card of {ranking}'
+                resp += f'\nHigh Card of {ranking}'
             else:
                 resp += f'\n{ranking}'
 
