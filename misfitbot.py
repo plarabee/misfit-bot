@@ -29,6 +29,7 @@ from requests.packages.urllib3.exceptions import InsecureRequestWarning
 
 from card import *
 from deck import *
+from poker import *
 
 # Global Variable Definitions
 RAIDBOTS_URL = 'https://www.raidbots.com/simbot'
@@ -157,9 +158,12 @@ def poker_hand():
     hand = []
     deck = Deck()
     deck.shuffle()
+
     for i in range(0, 5):
         hand.append(deck.draw())
-    return hand 
+
+    ranking, is_high_card = rank_hand(hand)    
+    return hand, ranking, is_high_card 
 
 
 def main():
@@ -300,10 +304,17 @@ def main():
             await message.channel.send(f'{message.author.name} drew a {rank} of {suit}')
         
         if message.content.startswith('!poker'):
-            hand = poker_hand()
-            resp = f'{message.author.name} draws a poker hand:\n'
+            hand, ranking, is_high_card  = poker_hand()
+            resp = f'{message.author.name} draws a poker hand:\n\n'
+
             for card in hand:
                 resp += f'{card.rank} of {card.suit}\n'
+
+            if is_high_card:
+                resp += f'High Card of {ranking}'
+            else:
+                resp += f'\n{ranking}'
+
             await message.channel.send(resp)
 
 
