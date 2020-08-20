@@ -202,7 +202,7 @@ def main():
                 "# !hearthstone {NAME} - displays data about matching HS cards\n"
             )
         
-        if message.content.startswith('!zarthe') || message.content.startswith('!Zarthe'):
+        if message.content.startswith('!zarthe') or message.content.startswith('!Zarthe'):
             await message.channel.send('Zarthe does not have Shadowlands beta.')
 
         if message.content.startswith('!classic'):  # !classic
