@@ -201,6 +201,9 @@ def main():
                 "# !{CLASS} - displays icyveins guide for all specs of that class\n"
                 "# !hearthstone {NAME} - displays data about matching HS cards\n"
             )
+        
+        if message.content.startswith('!zarthe') || message.content.startswith('!Zarthe'):
+            await message.channel.send('Zarthe does not have Shadowlands beta.')
 
         if message.content.startswith('!classic'):  # !classic
             await message.channel.send('No one cares about Classic.')
