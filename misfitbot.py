@@ -20,9 +20,11 @@ Example usage:
 import os
 import json
 import random
+import requests
 
 import discord
-import requests
+from discord.ext import commands
+
 from dotenv import load_dotenv
 from requests.auth import HTTPBasicAuth
 from requests.packages.urllib3.exceptions import InsecureRequestWarning
@@ -177,7 +179,9 @@ def main():
     blizz_secret = os.getenv('BLIZZARD_CLIENT_SECRET')
 
     # initialize discord client
-    client = discord.Client()
+    intents = discord.Intents.default()
+    intents.message_content = True
+    client = commands.Bot(command_prefix='!', intents=intents)
 
     # provides console feedback that client is logged in
     @client.event
